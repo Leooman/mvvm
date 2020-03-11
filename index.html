@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <label>输入值：</label><input v-model="name">
+        <p>{{name}}</p>
+        <button @click="add">ADD 100</button>
+        <p>初始值：{{status}}</p>
+    </div>
+    <script src="./js/Watcher.js"></script>
+    <script src="./js/Observer.js"></script>
+    <script src="./js/Compile.js"></script>
+    <script src="./js/CompileUtil.js"></script>
+    <script src="./js/Dep.js"></script>
+    <script src="./js/MVVM.js"></script>
+</body>
+
+</html>
+<script>
+    // Dep.target = null
+    let vm = new MVVM({
+        el:"#app",
+        data:{
+            title:"双向数据绑定",
+            name:"mvvm",
+            status:1000
+        },
+        methods:{
+            add(){
+                this.status += 100
+            }
+        },
+        mounted(){
+            window.setTimeout(() => {
+                this.status += 1
+            }, 2000)
+        }
+    })
+</script>
